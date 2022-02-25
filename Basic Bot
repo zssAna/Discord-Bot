@@ -1,0 +1,22 @@
+import discord
+
+# instantiate a discord client
+client = discord.Client()
+
+@client.event
+async def on_ready():
+  print(f'You have logged in as {client}')
+
+
+# called when there's a message in the chat
+@client.event
+async def on_message(message):
+  if message.author == client.user:
+    return
+
+  if message.content.startswith('hi'):
+    await message.channel.send('hello')
+
+    
+BOT_TOKEN = '...' 
+client.run(BOT_TOKEN)
